@@ -1,0 +1,54 @@
+---
+- hosts: box1
+  tasks:
+    - name: Install Node repo 
+      become: yes
+      yum_repository: 
+        name: noderpm
+        description: node from rpm
+        baseurl: https://rpm.nodesource.com/pub_7.x/el/6/x86_64/
+        enabled: yes
+        gpgcheck: no
+
+    - name: Install services
+      become: yes
+      yum: 
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - nodejs-7.2.0
+        - nginx
+
+    - name: Copy nginx config
+      become: yes
+      copy: 
+        src: ./config/default.conf
+        dest: /etc/nginx/conf.d/default.conf
+
+    - name: restart nginx
+      become: yes
+      service:
+        name: nginx
+        state: restarted
+        enabled: yes
+- hosts: box2
+  tasks:
+    - name: Install Node repo 
+      become: yes
+      yum_repository: 
+        name: noderpm
+        description: node from rpm
+        baseurl: https://rpm.nodesource.com/pub_7.x/el/6/x86_64/
+        enabled: yes
+        gpgcheck: no
+
+    - name: Install services
+      become: yes
+      yum: 
+        name: "{{item}}"
+        state: latest
+      with_items:
+        - nodejs-7.4.0
+        - nginx
+
+ 
