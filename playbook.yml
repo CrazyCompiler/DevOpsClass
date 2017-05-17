@@ -1,23 +1,11 @@
 ---
 - hosts: box1
+  vars_files: 
+    - ./config/config.yml 
   tasks:
-    - name: Install Node repo 
-      become: yes
-      yum_repository: 
-        name: noderpm
-        description: node from rpm
-        baseurl: https://rpm.nodesource.com/pub_7.x/el/6/x86_64/
-        enabled: yes
-        gpgcheck: no
-
-    - name: Install services
-      become: yes
-      yum: 
-        name: "{{item}}"
-        state: latest
-      with_items:
-        - nodejs-7.2.0
-        - nginx
+    - name: Include nodejs role
+      include_role: 
+        name: nodejs
 
     - name: Copy nginx config
       become: yes
@@ -32,23 +20,11 @@
         state: restarted
         enabled: yes
 - hosts: box2
+  vars_files: 
+    - ./config/config.yml 
   tasks:
-    - name: Install Node repo 
-      become: yes
-      yum_repository: 
-        name: noderpm
-        description: node from rpm
-        baseurl: https://rpm.nodesource.com/pub_7.x/el/6/x86_64/
-        enabled: yes
-        gpgcheck: no
-
-    - name: Install services
-      become: yes
-      yum: 
-        name: "{{item}}"
-        state: latest
-      with_items:
-        - nodejs-7.4.0
-        - nginx
+    - name: Include nodejs role
+      include_role: 
+        name: nodejs    
 
  
