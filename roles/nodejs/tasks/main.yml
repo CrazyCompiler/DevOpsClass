@@ -14,5 +14,5 @@
       name: "{{item}}"
       state: latest
     with_items:
-      - nodejs-7.4.0
+      - nodejs-{{node_version}}
       - nginx
