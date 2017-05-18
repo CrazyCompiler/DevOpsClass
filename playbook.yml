@@ -1,13 +1,13 @@
 ---
-- hosts: box1
+- hosts: boxGroup1
   vars_files: 
-    - ./config/box1.yml 
+    - ./configs/boxGroup1.yml 
   roles: 
     - nodejs
     - nginx
 
-- hosts: box2
+- hosts: boxGroup1
   vars_files: 
-    - ./config/box2.yml 
+    - ./configs/boxGroup1.yml 
   roles:
     - nodejs

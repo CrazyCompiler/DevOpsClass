@@ -8,11 +8,8 @@
       enabled: yes
       gpgcheck: no
 
-  - name: Install services
+  - name: Install Nodejs
     become: yes
     yum: 
-      name: "{{item}}"
+      name: nodejs
       state: latest
-    with_items:
-      - nodejs-{{node_version}}
-      - nginx
