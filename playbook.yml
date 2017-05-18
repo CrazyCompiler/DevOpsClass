@@ -6,7 +6,7 @@
     - nodejs
     - nginx
 
-- hosts: boxGroup1
+- hosts: boxGroup2
   vars_files: 
     - ./configs/boxGroup1.yml 
   roles:
