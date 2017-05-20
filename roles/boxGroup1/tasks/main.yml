@@ -1,9 +1,0 @@
----
-  
-  - name: Include nginx roles
-    include_role:
-      name: nginx
-
-  - name: Include nodejs roles
-    include_role:
-      name: nodejs

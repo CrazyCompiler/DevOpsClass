@@ -2,8 +2,12 @@
 - hosts: boxGroup1
   vars_files: 
     - ./configs/boxGroup1.yml 
+    - ./configs/passwords.yml
   roles: 
     - boxGroup1
+  tasks :
+    - debug:
+        var: sql_password 
 
 - hosts: boxGroup2
   vars_files: 
